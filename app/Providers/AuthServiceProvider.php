@@ -43,7 +43,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('delete-product', function ($user, $id) {
-          return false
+          return $user->isAdminUser()
                 ? Response::allow()
                 : Response::deny('You must be a super admin.');
         });
